@@ -64,7 +64,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 													<div class="col-md-8">
 															<div class="graph-form">
 																	<div class="form-body">
-																		<form action="<?php echo base_url().'index.php/page/update_anggota' ?>" method='POST'> 
+																		<form action="<?php echo base_url().'index.php/controller/update_anggota' ?>" method='POST'> 
 																			<div class="form-group"> 
 																				<label> Nama Ketua </label> 
 																				<input name = "ketua" type="text" class="form-control"  required> 
@@ -136,7 +136,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 										<li><a href="index.html"><i class="fa fa-tachometer"></i> <span> Form PKM </span></a></li>
 										<li><a href="<?php echo base_url().'index.php/page/upload' ?>"><i class="lnr lnr-pencil"></i> <span> Upload PKM </span></a></li>
 										<li><a href="typography.html"><i class="lnr lnr-pencil"></i> <span> Hasil Komentar </span></a></li>
-										<li><a href="<?php echo base_url().'index.php/page/logout'?>"><i class="lnr lnr-pencil"></i> <span> Logout </span></a></li>									
+										<li><a href="<?php echo base_url().'index.php/controller/logout'?>"><i class="lnr lnr-pencil"></i> <span> Logout </span></a></li>									
 								  </ul>
 								</div>
 							  </div>

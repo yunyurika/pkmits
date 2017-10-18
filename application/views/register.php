@@ -38,11 +38,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 													<h2 class="inner-tittle page">E-PKM</h2>
 													    <div class="login">
 														<h3 class="inner-tittle t-inner">Register</h3>
-																<form action="<?php echo base_url().'index.php/page/add_register' ?>" method='POST'>
-																		<input name="nama"  type="text" class="text" value="Nama" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Nama';}" >
-																		<input name = "nim" type="text" class="text" value="NIM" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'NIM';}" >
-																		<input name="email"  type="text" class="text" value="Email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email';}" >
-																		<input name="password" type="password" value="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}">
+																<form action="<?php echo base_url().'index.php/controller/add_register' ?>" method='POST'>
+																		<input name="nama"  type="text" class="text" value="Nama" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Nama';}" required>
+																		<input name = "nim" type="text" class="text" value="NIM" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'NIM';}" required>
+																		<input name="email"  type="text" class="text" value="Email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email';}" required>
+																		<input name="password" type="password" value="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}" required>
 
 																		
 																		<div class="sign-up">
@@ -54,7 +54,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 																		
 																		<div class="new">
 																			<p><label class="checkbox11"><input type="checkbox" name="checkbox"><i> </i>I agree with the terms</label></p>
-																			<p class="sign">Already register ? <a href="login.html">Login</a></p>
+																			<p class="sign">Already register ? <a href="<?php echo base_url() ?>">Login</a></p>
 																			<div class="clearfix"></div>
 																		</div>
 																	</form>

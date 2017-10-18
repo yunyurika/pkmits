@@ -41,9 +41,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 										    <div class="login">
 												<h3 class="inner-tittle t-inner">Masuk</h3>
 													<p style="color: red"><?php echo $this->session->flashdata('error');?></p>
-														<form action="<?php echo base_url().'index.php/page/login' ?>" method='POST' >
-																<input name="username" type="text" class="text" value="username" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'username';}" >
-																<input name="password" type="password" value="password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'password';}">	
+														<form action="<?php echo base_url().'index.php/controller/login' ?>" method='POST' >
+																<input name="username" type="text" class="text" value="username" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'username';}" required>
+																<input name="password" type="password" value="password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'password';}" required>	
 																<p> Belum punya akun? Silahkan Daftar <a href="<?php echo base_url().'index.php/page/register' ?>">disini</a> </p>							
 														<div class="submit"><input type="submit" onclick="myFunction()" value="Masuk" ></div>
 														<div class="clearfix"></div>
