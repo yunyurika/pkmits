@@ -37,6 +37,25 @@ class Mymodel extends CI_Model {
 		$this->db->update($table, $data);
 	}
 
+	public function all(){
+		//query semua record di table products
+		$hasil = $this->db->get('mahasiswa');
+		if($hasil->num_rows() > 0){
+			return $hasil->result();
+		} else {
+			return array();
+		}
+	}
+
+	public function all1(){
+		//query semua record di table products
+		$hasil = $this->db->get('user');
+		if($hasil->num_rows() > 0){
+			return $hasil->result();} }
+//                else {
+//			return array();
+//		}
+//	}
 	
 }
 
