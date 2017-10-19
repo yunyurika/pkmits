@@ -100,9 +100,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                            <div class="menu">
 									<ul id="menu" >
 										<li><a href="index.html"><i class="fa fa-tachometer"></i> <span> Form PKM </span></a></li>
-										<li><a href="typography.html"><i class="lnr lnr-pencil"></i> <span> Upload PKM </span></a></li>
+										<li><a href="<?php echo base_url().'index.php/page/upload' ?>"><i class="lnr lnr-pencil"></i> <span> Upload PKM </span></a></li>
+										<li><a href="<?php echo base_url().'index.php/page/list' ?>"><i class="lnr lnr-pencil"></i> <span> Daftar Mahasiswa </span></a></li>
 										<li><a href="typography.html"><i class="lnr lnr-pencil"></i> <span> Hasil Komentar </span></a></li>
-										<li><a href="<?php echo base_url().'index.php/page/logout'?>"><i class="lnr lnr-pencil"></i> <span> Logout </span></a></li>									
+										<li><a href="<?php echo base_url().'index.php/controller/logout'?>"><i class="lnr lnr-pencil"></i> <span> Logout </span></a></li>									
 								  </ul>
 								</div>
 							  </div>
