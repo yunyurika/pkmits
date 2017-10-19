@@ -7,24 +7,10 @@ class Mymodel extends CI_Model {
 		return $query->result_array();
 	}
 
-	public function login_admin($email, $password) {
-		$this->db->select('*');
-		$this->db->where('email', $email);
-		$this->db->where('password', $password);
-		$this->db->from('admin');
-
-		$query = $this->db->get();
-    	if($query->num_rows() == 1){
-    		return true;
-    	} else return false;		
-	}
-
 	public function login_user($username, $password) {
 		$this->db->select('*');
 		$this->db->where('NIM', $username);
 		$this->db->where('Password', $password);
-		// $this->db->where('Nama', 'yun');
-		// $this->db->from('user');
 
 		$query = $this->db->get('user');
     	return $query->row();

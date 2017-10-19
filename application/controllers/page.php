@@ -6,9 +6,10 @@ public function __construct() {
             parent::__construct();
             $this->load->model('mymodel');
              $this->load->library('session');
-            //if($this->session->userdata('status') != "login"){
-			//redirect(base_url('index.php/home'));
+            if($this->session->userdata('status') != "login"){
+			redirect(base_url('index.php/page/home'));
         //}
+			}
 }
 
 	public function index() {
@@ -21,6 +22,7 @@ public function __construct() {
 	}
 
 	public function form() {
+
 		 if($this->session->userdata('status') != "login" || $this->session->userdata('status') == "" || $this->session->userdata('status') == null ) {
 		 	redirect(base_url());
 		 }
@@ -30,6 +32,7 @@ public function __construct() {
 	}
 
 	public function home() {
+
 		 if($this->session->userdata('status') != "login" || $this->session->userdata('status') == "" || $this->session->userdata('status') == null ) {
 		 	redirect(base_url());
 		 }
@@ -39,7 +42,7 @@ public function __construct() {
 	}
 
 	public function form_nilai() {
-		 if($this->session->userdata('status') != "login" || $this->session->userdata('status') == "" || $this->session->userdata('status') == null ) {
+		 if($this->session->userdata('status') != "login" || $this->session->userdata('status') == "" || $this->session->userdata('status') == null || $this->session->userdata('role') !== "dosen" ) {
 		 	redirect(base_url());
 		 }
 		$this->load->view('header');
@@ -47,6 +50,7 @@ public function __construct() {
 	}
 
 	public function upload() {
+
 		 if($this->session->userdata('status') != "login" || $this->session->userdata('status') == "" || $this->session->userdata('status') == null ) {
 		 	redirect(base_url());
 		 }

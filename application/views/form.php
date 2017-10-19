@@ -30,7 +30,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 																<h4> Form Upload PKM</h4>
 															</div>
 
-															<p style="color: green"><?php echo $this->session->flashdata('error');?></p>
+															<!-- <p style="color: green"><?php echo $this->session->flashdata('error');?></p> -->
 															<div class="clearfix"> </div>	
 														</div>
 														
@@ -39,7 +39,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 													<div class="col-md-8">
 															<div class="graph-form">
 																	<div class="form-body">
-																		<?php echo form_control_multipart('page/update_pkm') ?>
+																		<?php echo form_open_multipart('controller/update_pkm'); ?>
 																		<form   method='POST'> 
 																			<div class="form-group"> 
 																				<label>Judul</label> 
@@ -52,6 +52,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 																			 <input type="hidden" name="is_submit" value="1">
 																			
 																			 <button type="submit" class="btn btn-default">Submit</button> 
+																			    <?php echo form_close(); ?>
 																			</form> 
 																	</div>
 

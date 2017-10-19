@@ -110,7 +110,7 @@ public function add_register() {
 			
 	}
 
-	public function update_pkm() {
+	/*public function update_pkm() {
 
 		$this->load->library('upload');
 		$this->load->helper('form');
@@ -118,10 +118,40 @@ public function add_register() {
 		$is_submit= $this->input->post('is_submit');
 
 		if (isset($is_submit) && $is_submit ==1) {
-			
+			$fileUpload = array();
+			$isUpload = FALSE;
+
+			$config = array(
+					  'upload_path' => './uploads/',
+					  'allowed_types' => 'docx|doc',
+					  'max_size' => 2000
+					  );
+
+			$this->upload->initialize($config);
+			if($this->upload->do_upload('file')) {
+				$fileUpload = $this->upload->data();
+				$isUpload = TRUE;
+			}
+
+			if($isUpload) {
+				$data = array(
+						'JudulPKM' => $this->input->post('judul'),
+						'FilePKM' => $this->fileUpload['file_name']
+						);
+
+				$where = array('NIM' => $this->session->userdata('username'));
+
+				echo print_r($data);
+
+				echo print_r($where	);
+				//$this->mymodel->update_data($where, $data,'user');
+
+				//redirect(base_url());
+			}
+
 		}
 
-	}
+	} */
 }
 
 ?>
