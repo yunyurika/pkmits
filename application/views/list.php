@@ -72,18 +72,26 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 													<thead>
 													<tr>
 							
-							<th>Nama</th>
-							<th>NRP</th>
-							<th>Jurusan</th>
+							<th>Judul PKM</th>
+							<th>Nama Ketua</th>
+							<th>NIM</th>
+							<th>Nama Anggota 1</th>
+							<th>Nama Anggota 2</th>
+							<th>Nama Anggota 3</th>
+							<th>Nama Anggota 4</th>
 						</tr>
 					</thead>
 					<tbody>
-						<?php foreach($mahasiswa as $daftar) : ?>
+						<?php foreach($user as $daftar) : ?>
 						<tr>
 			
-							<td><?=$daftar->nama?></td>
-							<td><?=$daftar->nrp?></td>
-							<td><?=$daftar->jurusan?></td>
+							<td><?=$daftar->JudulPKM?></td>
+							<td><?=$daftar->NamaKetua?></td>
+							<td><?=$daftar->NIM?></td>					
+							<td><?=$daftar->Anggota1?></td>
+							<td><?=$daftar->Anggota2?></td>
+							<td><?=$daftar->Anggota3?></td>
+							<td><?=$daftar->Anggota4?></td>
 							</td>
 						</tr>
 						<?php endforeach; ?>
