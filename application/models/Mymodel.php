@@ -39,7 +39,7 @@ class Mymodel extends CI_Model {
 
 	public function all(){
 		//query semua record di table products
-		$hasil = $this->db->get('mahasiswa');
+		$hasil = $this->db->get('user');
 		if($hasil->num_rows() > 0){
 			return $hasil->result();
 		} else {
@@ -47,15 +47,6 @@ class Mymodel extends CI_Model {
 		}
 	}
 
-	public function all1(){
-		//query semua record di table products
-		$hasil = $this->db->get('user');
-		if($hasil->num_rows() > 0){
-			return $hasil->result();} }
-//                else {
-//			return array();
-//		}
-//	}
 	
 }
 
