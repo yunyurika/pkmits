@@ -63,8 +63,7 @@ public function __construct() {
 		 	redirect(base_url());
 		}
 		$this->load->view('header');
-		$data['mahasiswa'] = $this->Mymodel->all();
-		$data['user'] = $this->Mymodel->all1();
+		$data['user'] = $this->Mymodel->all();
 		$this->load->view('list', $data);
 	}
 
