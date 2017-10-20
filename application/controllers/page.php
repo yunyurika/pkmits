@@ -5,11 +5,8 @@ class Page extends CI_Controller {
 public function __construct() {
             parent::__construct();
             $this->load->model('mymodel');
-             $this->load->library('session');
-            if($this->session->userdata('status') != "login"){
-			redirect(base_url('index.php/page/home'));
-        //}
-			}
+            
+
 }
 
 	public function index() {
@@ -36,27 +33,25 @@ public function __construct() {
 		 if($this->session->userdata('status') != "login" || $this->session->userdata('status') == "" || $this->session->userdata('status') == null ) {
 		 	redirect(base_url());
 		 }
+		 $username = $this->session->userdata('username');
+		 $dataNama = $this->Mymodel->getData($username);
 		$this->load->view('header');
-		$this->load->view('home');
+		$this->load->view('home', array('data' => $dataNama));
 			
 	}
 
-	public function form_nilai() {
-		 if($this->session->userdata('status') != "login" || $this->session->userdata('status') == "" || $this->session->userdata('status') == null || $this->session->userdata('role') !== "dosen" ) {
+	public function list(){
+		if($this->session->userdata('status') != "login" || $this->session->userdata('status') == "" || $this->session->userdata('status') == null ) {
 		 	redirect(base_url());
-		 }
+		}
 		$this->load->view('header');
-		$this->load->view('form_nilai');
+		$data['user'] = $this->Mymodel->all();
+		$this->load->view('list', $data);
 	}
 
-	public function upload() {
 
-		 if($this->session->userdata('status') != "login" || $this->session->userdata('status') == "" || $this->session->userdata('status') == null ) {
-		 	redirect(base_url());
-		 }
-		$this->load->view('header');
-		$this->load->view('form'); 
-	}
+
+
 
 	
 

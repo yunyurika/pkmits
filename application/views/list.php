@@ -1,4 +1,5 @@
 
+
 <!--
 Author: W3layouts
 Author URL: http://w3layouts.com
@@ -22,7 +23,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 											   <input type="text" value="Search" onFocus="this.value = '';" onBlur="if (this.value == '') {this.value = 'Search';}" class="text"/>
 												<input type="submit" value="">
 											</form>
-									<div class="close"><img src="images/cross.png" /></div>
+									<div class="close"><img src="assets/images/cross.png" /></div>
 								</div>
 									<div class="srch"><button></button></div>
 									<script type="text/javascript">
@@ -52,7 +53,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 														<div>
 
 															<div class="stats-left ">
-																<h4> Form Pengisian PKM</h4>
+																<h4> Daftar Mahasiswa</h4>
 															</div>
 
 															<p style="color: green"><?php echo $this->session->flashdata('error');?></p>
@@ -64,39 +65,43 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 													<div class="col-md-8">
 															<div class="graph-form">
 																	<div class="form-body">
-																		<form action="<?php echo base_url().'index.php/controller/update_anggota' ?>" method='POST'>
-																			<?php foreach ($data as $x) {
-																				# code...
-																			 ?>
-																			<div class="form-group"> 
-																				<label> Judul PKM </label> 
-																				<input name = "judul" type="text" class="form-control"  required> 
-																			</div>
-
-																			<div class="form-group"> 
-																				<label> Nama Ketua </label> 
-																				<input name = "ketua" type="text" class="form-control" value="<?= $x['Nama']; ?>"  readonly> 
-																			</div>
-																			 <div class="form-group">
-																			 	<label> Nama Anggota 1 </label> 
-																			 	<input name = "anggota1" type="text" class="form-control"   required> 
-																			 </div> 
-																			 <div class="form-group">
-																			 	<label> Nama Anggota 2 </label> 
-																			 	<input name = "anggota2" type="text" class="form-control"   required> 
-																			 </div>
-																			 <div class="form-group">
-																			 	<label> Nama Anggota 3 </label> 
-																			 	<input name= "anggota3" type="text" class="form-control"  > 
-																			 </div>
-																			 <div class="form-group">
-																			 	<label> Nama Anggota 4 </label> 
-																			 	<input name="anggota4" type="text" class="form-control" > 
-																			 </div>  
-																			 
-																			 <button type="submit" class="btn btn-default">Submit</button> 
-																			</form> 
-
+																		<div class="row">
+													<div class="col-md-1"></div>
+													<div class="col-md-10">
+			
+													<table id="myTable" class="table table-striped table-bordered table-hover">
+													<thead>
+													<tr>
+							
+							<th>Judul PKM</th>
+							<th>Nama Ketua</th>
+							<th>NIM</th>
+							<th>Nama Anggota 1</th>
+							<th>Nama Anggota 2</th>
+							<th>Nama Anggota 3</th>
+							<th>Nama Anggota 4</th>
+						</tr>
+					</thead>
+					<tbody>
+						<?php foreach($user as $daftar) : ?>
+						<tr>
+			
+							<td><?=$daftar->JudulPKM?></td>
+							<td><?=$daftar->NamaKetua?></td>
+							<td><?=$daftar->NIM?></td>					
+							<td><?=$daftar->Anggota1?></td>
+							<td><?=$daftar->Anggota2?></td>
+							<td><?=$daftar->Anggota3?></td>
+							<td><?=$daftar->Anggota4?></td>
+							</td>
+						</tr>
+						<?php endforeach; ?>
+						
+				</table>
+			</div>
+			<div class="col-md-1"></div>
+		</div>
+		<table id="myTable" class="table table-striped table-bordered table-hover">
 																	</div>
 
 															</div>
@@ -130,13 +135,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				</header>
 			<div style="border-top:1px solid rgba(69, 74, 84, 0.7)"></div>
 			<!--/down-->
-							<div class="down">	
-								
-								
-									  <a href="#"><span class=" name-caret"><?= $x['Nama']; ?></span></a>
-									 <p><?= $x['NIM']; ?></p>
+							<div class="down">
+							
+									  <a href="#"><span class=" name-caret">WELCOME</span></a>
+									 <p></p>
 									<ul>
-										<?php } ?>
+							
 									<li><a class="tooltips" href="#"><span>Profile</span><i class="lnr lnr-user"></i></a></li>
 										<li><a class="tooltips" href="#"><span>Settings</span><i class="lnr lnr-cog"></i></a></li>
 										<li><a class="tooltips" href="#"><span>Log out</span><i class="lnr lnr-power-switch"></i></a></li>
@@ -145,9 +149,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 							   <!--//down-->
                            <div class="menu">
 									<ul id="menu" >
-										<li><a href="#"><i class="fa fa-tachometer"></i> <span> Pengisian Anggota </span></a></li>
-									
-										<li><a href="<?php echo base_url().'index.php/controller/logout'?>"><i class="lnr lnr-pencil"></i> <span> Logout </span></a></li>									
+										<li><a href="#"><i class="fa fa-tachometer"></i> <span> Daftar Mahasiswa</span></a></li>
+										<li><a href="<?php echo base_url().'index.php/controller/logout'?>"><i class="lnr lnr-pencil"></i> <span> Logout </span></a></li>										
 								  </ul>
 								</div>
 							  </div>
@@ -175,13 +178,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 							</script>
 <!--js -->
 <link rel="stylesheet" href="css/vroom.css">
-<script type="text/javascript" src="js/vroom.js"></script>
-<script type="text/javascript" src="js/TweenLite.min.js"></script>
-<script type="text/javascript" src="js/CSSPlugin.min.js"></script>
-<script src="js/jquery.nicescroll.js"></script>
-<script src="js/scripts.js"></script>
+<script type="text/javascript" src="assets/js/vroom.js"></script>
+<script type="text/javascript" src="assets/js/TweenLite.min.js"></script>
+<script type="text/javascript" src="assets/js/CSSPlugin.min.js"></script>
+<script src="assets/js/jquery.nicescroll.js"></script>
+<script src="assets/js/scripts.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
-   <script src="js/bootstrap.min.js"></script>
+   <script src="assets/js/bootstrap.min.js"></script>
 </body>
 </html>
+

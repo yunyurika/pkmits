@@ -65,7 +65,7 @@ public function add_register() {
 								  'role' => 'dosen',
 								  );
 			$this->session->set_userdata($data_session);
-			redirect(base_url().'index.php/page/home_dosen');
+			redirect(base_url().'index.php/page/list');
 			
 		} else  {
 			$this->session->set_flashdata('error', 'password/username yang anda masukkan salah');
@@ -91,7 +91,9 @@ public function add_register() {
 	public function update_anggota() {
 
 
-			$data = array('NamaKetua' => $this->input->post('ketua'),
+			$data = array(
+						  'JudulPKM' => $this->input->post('judulpkm'),
+						  'NamaKetua' => $this->input->post('ketua'),
 						  'Anggota1' => $this->input->post('anggota1'),
 						  'Anggota2' => $this->input->post('anggota3'),
 						  'Anggota3' => $this->input->post('anggota3'),

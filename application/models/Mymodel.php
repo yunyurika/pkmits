@@ -2,10 +2,14 @@
 
 class Mymodel extends CI_Model {
 	
-	public function getData($email) {
-		$query =  $this->db->get_where('admin', array('email' => $email));
+	public function getData($username) {
+		$query =  $this->db->get_where('user', array('NIM' => $username));
 		return $query->result_array();
 	}
+/*public function get_dosen($username) {
+		$query = $this->db->get_where('dosen', array('NIP' => $username));
+		return $query->result_array();
+	} */
 
 	public function login_user($username, $password) {
 		$this->db->select('*');
@@ -35,6 +39,16 @@ class Mymodel extends CI_Model {
 	public function update_data($where, $data, $table) {
 		$this->db->where($where);
 		$this->db->update($table, $data);
+	}
+
+	public function all(){
+		//query semua record di table products
+		$hasil = $this->db->get('user');
+		if($hasil->num_rows() > 0){
+			return $hasil->result();
+		} else {
+			return array();
+		}
 	}
 
 	
