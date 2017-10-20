@@ -1,4 +1,4 @@
-
+     
 <!--
 Author: W3layouts
 Author URL: http://w3layouts.com
@@ -16,31 +16,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		<!-- header-starts -->
 			<div class="header-section">
 						<!--menu-right-->
-						<div class="top_menu">
-						        <div class="main-search">
-											<form>
-											   <input type="text" value="Search" onFocus="this.value = '';" onBlur="if (this.value == '') {this.value = 'Search';}" class="text"/>
-												<input type="submit" value="">
-											</form>
-									<div class="close"><img src="images/cross.png" /></div>
-								</div>
-									<div class="srch"><button></button></div>
-									<script type="text/javascript">
-										 $('.main-search').hide();
-										$('button').click(function (){
-											$('.main-search').show();
-											$('.main-search text').focus();
-										}
-										);
-										$('.close').click(function(){
-											$('.main-search').hide();
-										});
-									</script>
-							<!--/profile_details-->
-								
-							<div class="clearfix"></div>	
-							<!--//profile_details-->
-						</div>
+						
 						<!--//menu-right-->
 					<div class="clearfix"></div>
 				</div>
@@ -50,12 +26,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 												<div class="custom-widgets">
 												   <div class="row-one">
 														<div>
-
 															<div class="stats-left ">
-																<h4> Form Pengisian PKM</h4>
+																<h4> Form Upload PKM</h4>
 															</div>
 
-															<p style="color: green"><?php echo $this->session->flashdata('error');?></p>
+															<!-- <p style="color: green"><?php echo $this->session->flashdata('error');?></p> -->
 															<div class="clearfix"> </div>	
 														</div>
 														
@@ -64,39 +39,21 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 													<div class="col-md-8">
 															<div class="graph-form">
 																	<div class="form-body">
-																		<form action="<?php echo base_url().'index.php/controller/update_anggota' ?>" method='POST'>
-																			<?php foreach ($data as $x) {
-																				# code...
-																			 ?>
+																		<?php echo form_open_multipart('controller/update_pkm'); ?>
+																		<form   method='POST'> 
 																			<div class="form-group"> 
-																				<label> Judul PKM </label> 
-																				<input name = "judul" type="text" class="form-control"  required> 
+																				<label>Judul</label> 
+																				<input name="judul" type="text" class="form-control"  required> 
 																			</div>
-
 																			<div class="form-group"> 
-																				<label> Nama Ketua </label> 
-																				<input name = "ketua" type="text" class="form-control" value="<?= $x['Nama']; ?>"  readonly> 
-																			</div>
-																			 <div class="form-group">
-																			 	<label> Nama Anggota 1 </label> 
-																			 	<input name = "anggota1" type="text" class="form-control"   required> 
-																			 </div> 
-																			 <div class="form-group">
-																			 	<label> Nama Anggota 2 </label> 
-																			 	<input name = "anggota2" type="text" class="form-control"   required> 
+																				<label >Upload file PKM</label>
+																				 <input name="file" type="file" > 
 																			 </div>
-																			 <div class="form-group">
-																			 	<label> Nama Anggota 3 </label> 
-																			 	<input name= "anggota3" type="text" class="form-control"  > 
-																			 </div>
-																			 <div class="form-group">
-																			 	<label> Nama Anggota 4 </label> 
-																			 	<input name="anggota4" type="text" class="form-control" > 
-																			 </div>  
-																			 
+																			 <input type="hidden" name="is_submit" value="1">
+																			
 																			 <button type="submit" class="btn btn-default">Submit</button> 
+																			    <?php echo form_close(); ?>
 																			</form> 
-
 																	</div>
 
 															</div>
@@ -131,29 +88,21 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			<div style="border-top:1px solid rgba(69, 74, 84, 0.7)"></div>
 			<!--/down-->
 							<div class="down">	
-								
-								
-									  <a href="#"><span class=" name-caret"><?= $x['Nama']; ?></span></a>
-									 <p><?= $x['NIM']; ?></p>
+									  <a href="index.html"><span class=" name-caret">Jasmin Leo</span></a>
+									 <p>System Administrator in Company</p>
 									<ul>
-										<?php } ?>
-									<li><a class="tooltips" href="#"><span>Profile</span><i class="lnr lnr-user"></i></a></li>
-										<li><a class="tooltips" href="#"><span>Settings</span><i class="lnr lnr-cog"></i></a></li>
-										<li><a class="tooltips" href="#"><span>Log out</span><i class="lnr lnr-power-switch"></i></a></li>
+									<li><a class="tooltips" href="index.html"><span>Profile</span><i class="lnr lnr-user"></i></a></li>
+										<li><a class="tooltips" href="index.html"><span>Settings</span><i class="lnr lnr-cog"></i></a></li>
+										<li><a class="tooltips" href="index.html"><span>Log out</span><i class="lnr lnr-power-switch"></i></a></li>
 										</ul>
 							</div>
 							   <!--//down-->
                            <div class="menu">
 									<ul id="menu" >
-<<<<<<< HEAD
-										<li><a href="#"><i class="fa fa-tachometer"></i> <span> Pengisian Anggota </span></a></li>
-									
-=======
 										<li><a href="index.html"><i class="fa fa-tachometer"></i> <span> Form PKM </span></a></li>
 										<li><a href="<?php echo base_url().'index.php/page/upload' ?>"><i class="lnr lnr-pencil"></i> <span> Upload PKM </span></a></li>
 										<li><a href="<?php echo base_url().'index.php/page/list' ?>"><i class="lnr lnr-pencil"></i> <span> Daftar Mahasiswa </span></a></li>
 										<li><a href="typography.html"><i class="lnr lnr-pencil"></i> <span> Hasil Komentar </span></a></li>
->>>>>>> 391a7d36471770d611df5f2ce5582b26cc29223b
 										<li><a href="<?php echo base_url().'index.php/controller/logout'?>"><i class="lnr lnr-pencil"></i> <span> Logout </span></a></li>									
 								  </ul>
 								</div>
