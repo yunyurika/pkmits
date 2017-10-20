@@ -145,15 +145,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 							   <!--//down-->
                            <div class="menu">
 									<ul id="menu" >
-<<<<<<< HEAD
 										<li><a href="#"><i class="fa fa-tachometer"></i> <span> Pengisian Anggota </span></a></li>
 									
-=======
-										<li><a href="index.html"><i class="fa fa-tachometer"></i> <span> Form PKM </span></a></li>
-										<li><a href="<?php echo base_url().'index.php/page/upload' ?>"><i class="lnr lnr-pencil"></i> <span> Upload PKM </span></a></li>
-										<li><a href="<?php echo base_url().'index.php/page/list' ?>"><i class="lnr lnr-pencil"></i> <span> Daftar Mahasiswa </span></a></li>
-										<li><a href="typography.html"><i class="lnr lnr-pencil"></i> <span> Hasil Komentar </span></a></li>
->>>>>>> 391a7d36471770d611df5f2ce5582b26cc29223b
 										<li><a href="<?php echo base_url().'index.php/controller/logout'?>"><i class="lnr lnr-pencil"></i> <span> Logout </span></a></li>									
 								  </ul>
 								</div>
