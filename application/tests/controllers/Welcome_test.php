@@ -1,5 +1,4 @@
-<?php
-/**
+<?php /**
  * Part of ci-phpunit-test
  *
  * @author     Kenji Suzuki <https://github.com/kenjis>
@@ -10,16 +9,16 @@
 
 class Welcome_test extends TestCase
 {
+    
+        public function setUp()
+        {
+                $this->resetInstance();
+                $this->CI->load->model('Mymodel');
+		$this->objek = $this->CI->Mymodel;
+           }
         public function test_index() 
         {
                 $output = $this->request('GET', 'page/index');
-                $this->assertContains('Masuk', $output);
-        }
-        
-        public function test_indexwelcome() 
-        {
-                $output = $this->request('GET', 'Welcome/index');
-                $this->assertContains('Register', $output);
                 $this->assertContains('Masuk', $output);
         }
         
@@ -27,8 +26,45 @@ class Welcome_test extends TestCase
                 $output = $this->request('GET', 'page/register');
                 $this->assertContains('Register', $output);
         }
-
-	public function test_mahasiswa()
+        
+        public function test_add_register(){
+                $output = $this->request('POST','controller/add_register',
+                ['nim'=>'11111', 'nama'=>'11111', 'email'=>'11111', 'password'=>'11111']);
+                //$this->assertContains('Masuk', $output);
+              //  $where = 'test';
+        }
+        public function test_add_register_kosong(){
+                $mula = $this->objek->getCurrentRow();
+                $output = $this->request('POST','controller/add_register',
+                           ['nim'=>'11111', 
+                            'nama'=>'11111', 
+                            'email'=>'', 
+                            'password'=>'11111']);
+                //$this->assertContains('Masuk', $output);
+                
+                $akhir = $this->objek->getCurrentRow();
+                $expected = $akhir - $mula;
+                $this->assertEquals(0, $expected);
+        }
+        public function test_add_nimsudahada(){
+      
+		$mula = $this->objek->getCurrentRow();
+		$this->request(
+			'POST',
+			['controller/add_register'],
+			[
+			'nim' => 'baba',
+                        'nama' => 'baba',
+                        'email' => 'baba',
+                        'password'  => '123'
+			]
+			);
+		$akhir = $this->objek->getCurrentRow();
+                $expected = $akhir - $mula;
+                $this->assertEquals(0, $expected);
+        
+	}
+        public function test_mahasiswa()
 	{
                 $_SESSION['username'] = 'username';
                 $_SESSION['status'] = 'login';
@@ -37,54 +73,107 @@ class Welcome_test extends TestCase
 		$this->assertContains('Form Pengisian PKM', $output);
 	}
         
-        public function test_add_register(){
-                $output = $this->request('POST','controller/add_register',
-                ['nim'=>'11111', 'nama'=>'11111', 'email'=>'11111', 'password'=>'11111']);
-                //$this->assertContains('Masuk', $output);
-                $where = 'test';
-        }
-        
-        public function test_update_anggota(){
-                $output = $this->request('POST','controller/update_anggota',
-                ['judulpkm'=>'aaaaa', 'ketua'=>'aaaaa', 'aaaaa'=>'aaaaa', 'anggota2'=>'aaaaa', 'anggota3'=>'aaaaa', 'anggota4'=>'aaaaa']);
-                //$this->assertContains('Masuk', $output);
-                $where = 'aaaaa';
-            
-        }
-        
         public function test_login_dosen_sukses(){
             $output = $this->request('POST',['controller', 'login'],
-                ['username'=>'22222', 'password'=>'22222']);
-            $this->assertEquals('22222', $_SESSION['username']);
+                ['username'=>'5215100', 'password'=>'123']);
+            $this->assertEquals('5215100', $_SESSION['username']);
         }
         
         public function test_login_mahasiswa_sukses(){
             $output = $this->request('POST',['controller', 'login'],
-                ['username'=>'cccc', 'password'=>'cccc']);
-            $this->assertEquals('cccc', $_SESSION['username']);
+                ['username'=>'ada', 'password'=>'123']);
+            $this->assertEquals('ada', $_SESSION['username']);
         }
         
-        public function test_login_gagal(){
-            $output = $this->request('POST',['controller', 'login'],
-                ['username'=>'tae', 'password'=>'tae']);
-            $this->assertContains('error', $output);
-            $this->assertRedirect(base_url());
+         public function test_masuk_nokatasandi(){
+        $this->request('POST', 'controller/login',
+            [
+                'username' => 'ada',
+                'password' => '',
+            ]);
+        $this->assertRedirect(base_url());
+        $this->assertFalse(isset($_SESSION['username']) );
         }
+         public function test_masuk_nousername(){
+        $this->request('POST', 'controller/login',
+            [
+                'username' => '',
+                'password' => '123',
+            ]);
+        $this->assertRedirect(base_url());
+        $this->assertFalse( isset($_SESSION['username']) );
+        }
+    
+        public function test_submit_masuk_unmatch(){
+        $this->request('POST', 'controller/login',
+            [
+                'username' => 'ada',
+                'password' => 'unmatch',
+            ]);
+        $this->assertRedirect(base_url());
+        $this->assertFalse( isset($_SESSION['username']) );
+        }
+    
+      /*   public function test_submit_masuk(){
+        $this->assertFalse( isset($_SESSION['username']) );
+        $this->request('POST', 'Welcome_admin/masuk',
+            [
+                'username' => 'kurakura',
+                'password' => 'penyu',
+            ]);
+        $this->assertRedirect('Admin');
+        $this->assertEquals('kurakura', $_SESSION['username']);
+        }
+        */
+        public function test_submit_masuk_kosong(){
+        $this->request('POST', 'controller/login',
+            [
+                'username' => '',
+                'password' => '',
+            ]);
+        $this->assertRedirect(base_url());
+        $this->assertFalse( isset($_SESSION['username']) );
+        }
+        
+        public function test_update_anggota(){
+                $_SESSION['username'] = 'baba';
+                $_SESSION['status'] = 'login';
+                $_SESSION['role'] = 'mahasiswa'; 
+                $output = $this->request('POST','controller/update_anggota',
+                ['judulpkm'=>'aaaaa', 'anggota1'=>'aaaaa', 'anggota2'=>'aaaaa', 'anggota3'=>'aaaaa', 'anggota4'=>'aaaaa']);
+                //$this->assertContains('Masuk', $output);
+                $where = 'baba';
+            
+        }
+        public function test_update_nosession() {
+            $output = $this->request('GET', 'page/index');
+            $this->assertContains('Masuk', $output);
+        }
+        
         
         public function test_logout(){
-            $_SESSION['username'] = "cccc";
+            $_SESSION['username'] = "ada";
             $_SESSION['status'] = "login";
             $this->request('GET', 'controller/logout');
             $this->assertRedirect(base_url());
             //$this->assertFalse( isset($_SESSION['username']) );
         }
-       /* public function test_dosen() {
+       /*public function test_dosen() {
                 $_SESSION['username'] = 'username';
                 $_SESSION['status'] = 'login';
                 $_SESSION['role'] = 'dosen';
                 $output = $this->request('GET', 'page/home_dosen');
                 $this->assertContains('Form Pengisian PKM', $output);
         } */
+        
+         public function test_login_dosen_lihat() {
+                $_SESSION['username'] = '5215100';
+                $_SESSION['status'] = 'login';
+                $_SESSION['role'] = 'dosen';
+                
+                $output = $this->request('POST', 'page/urutan');
+                $this->assertContains('<th>NIM</th>', $output);
+        }
         
 	public function test_method_404()
 	{

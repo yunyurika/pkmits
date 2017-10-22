@@ -38,10 +38,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 													<h2 class="inner-tittle page">E-PKM</h2>
 													    <div class="login">
 														<h3 class="inner-tittle t-inner">Register</h3>
-																<form action="<?php echo base_url().'index.php/controller/add_register' ?>" method='POST'>
+																<p style="color: red"><?php echo $this->session->flashdata('error');?></p>
+																<?php echo form_open('controller/add_register'); ?>
+																<form method='POST'>
+																		<?php echo form_error('nama', '<div class="text-danger">', '</div>'); ?>
 																		<input name="nama"  type="text" class="text" value="Nama" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Nama';}" required>
+																		<?php echo form_error('nim', '<div class="text-danger">', '</div>'); ?>
 																		<input name = "nim" type="text" class="text" value="NIM" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'NIM';}" required>
+																		<?php echo form_error('email', '<div class="text-danger">', '</div>'); ?>
 																		<input name="email"  type="text" class="text" value="Email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email';}" required>
+																		<?php echo form_error('password', '<div class="text-danger">', '</div>'); ?>
 																		<input name="password" type="password" value="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}" required>
 
 																		

@@ -2,44 +2,67 @@
 
  class Controller extends CI_Controller {
 	
-public function __construct() {
+    public function __construct() {
             parent::__construct();
             $this->load->model('mymodel');
              $this->load->library('session');
-            //if($this->session->userdata('status') != "login"){
-			//redirect(base_url('index.php/home'));
-        //}
-}
+
+  	// 		if ($this->session->userdata('status') != null || $this->session->userdata('status') != ""){
+				
+			// } else {
+			// 	 redirect('page');
+			// }      
+    }
+
+    public function index() {
+   //  	 if ($this->session->userdata('role') == 'mahasiswa' ){
+			// 	redirect('page/home');
+			// } else if ($this->session->userdata('role') == 'dosen'){
+			// 	redirect('page/urutan');
+			// } else {
+			// 	redirect(base_url());
+			//}
+    }
 
 
-public function add_register() {
+    public function add_register() {
 		$this->load->helper('form');
+		$this->load->library('form_validation');
 
-		$nama = $this->input->post('nama');
-		$nim  = $this->input->post('nim');
-		$email = $this->input->post('email');
-		$password = $this->input->post('password');
+		$this->form_validation->set_rules('nama', 'Nama', 'required');
+		$this->form_validation->set_rules('nim', 'NIM', 'required|is_unique[user.NIM]');
+		$this->form_validation->set_rules('email', 'Email', 'required|valid_email');
+		$this->form_validation->set_rules('password', 'Password', 'required');
+
+		if($this->form_validation->run() != false){
+				$nama = $this->input->post('nama');
+				$nim  = $this->input->post('nim');
+				$email = $this->input->post('email');
+				$password = $this->input->post('password');
+			
+
+
+				$data = array('NIM' => $nim ,
+							  'Nama' => $nama,
+							  'Email' => $email,
+							  'Password' => md5($password) );
+
+				$sukses = $this->mymodel->register($data);
+
+				$data_session = array('username' => $username,
+									  'status' => 'login',
+									  'role' => 'mahasiswa');
+				$this->session->set_userdata($data_session);
+
+				redirect(base_url().'index.php/page/home');
 	
-
-
-		$data = array('NIM' => $nim ,
-					  'Nama' => $nama,
-					  'Email' => $email,
-					  'Password' => md5($password) );
-
-		$sukses = $this->mymodel->register($data);
-
-		$data_session = array('username' => $username,
-							  'status' => 'login',
-							  'role' => 'mahasiswa');
-		$this->session->set_userdata($data_session);
-
-
-		redirect(base_url().'index.php/page/home');
+		} else {
+			//$this->session->set_flashdata('error', 'Isi kembali dengan benar form ini!');
+			$this->load->view('register');	
+	
+		}
 	}
-
-
-
+        
 	public function login() {
 		$username = $this->input->post('username');
 		$password = $this->input->post('password');
@@ -70,11 +93,8 @@ public function add_register() {
 		} else  {
 			$this->session->set_flashdata('error', 'password/username yang anda masukkan salah');
 			redirect();
-
 		}
-
-		// print_r($datamahasiswa);
-	}
+       }
 
 		// var_dump($isMahasiswa);
 
@@ -92,8 +112,8 @@ public function add_register() {
 
 
 			$data = array(
-						  'JudulPKM' => $this->input->post('judulpkm'),
-						  'NamaKetua' => $this->input->post('ketua'),
+    					  'JudulPKM' => $this->input->post('judul'),
+    					  'NamaKetua' => $this->input->post('ketua'),	
 						  'Anggota1' => $this->input->post('anggota1'),
 						  'Anggota2' => $this->input->post('anggota3'),
 						  'Anggota3' => $this->input->post('anggota3'),
@@ -109,8 +129,7 @@ public function add_register() {
 
 			$this->session->set_flashdata('success', 'berhasil mengupdate');
 			redirect(base_url().'index.php/page/home');
-			
-	}
+        }
 
 	/*public function update_pkm() {
 

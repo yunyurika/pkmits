@@ -10,6 +10,9 @@ class Mymodel extends CI_Model {
 		$query = $this->db->get_where('dosen', array('NIP' => $username));
 		return $query->result_array();
 	} */
+        public function getCurrentRow() {
+                       return $this->db->get('user')->num_rows();
+                }
 
 	public function login_user($username, $password) {
 		$this->db->select('*');
