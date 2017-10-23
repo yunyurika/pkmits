@@ -36,11 +36,11 @@
 							  'Email' => $email,
 							  'Password' => md5($password) );
 				$sukses = $this->mymodel->register($data);
-				$data_session = array('username' => $username,
-									  'status' => 'login',
-									  'role' => 'mahasiswa');
-				$this->session->set_userdata($data_session);
-				redirect(base_url().'index.php/page/home');
+//				$data_session = array('username' => $username,
+//									  'status' => 'login',
+//									  'role' => 'mahasiswa');
+//				$this->session->set_userdata($data_session);
+				redirect(base_url());
 	
 		} else {
 			//$this->session->set_flashdata('error', 'Isi kembali dengan benar form ini!');

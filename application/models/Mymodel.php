@@ -49,11 +49,8 @@ class Mymodel extends CI_Model {
 		$hasil = $this->db->get('user');
 		if($hasil->num_rows() > 0){
 			return $hasil->result();
-		} else {
-                    return array();
-		}
+		} else {return array();}
 	}
-
 	
 }
 

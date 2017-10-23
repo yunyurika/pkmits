@@ -30,13 +30,13 @@ class Welcome_test extends TestCase
         public function test_add_register(){
                 $awal = $this->objek->getCurrentRow();  
                 $output = $this->request('POST','controller/add_register',
-                           ['nim'=>'5215008078', 
+                           ['nim'=>'5215666688', 
                             'nama'=>'ian', 
                             'email'=>'hanum@gmail.com', 
                             'password'=>'123']);
-                   $akhir = $this->objek->getCurrentRow();
-                    $result = $akhir - $awal;
-                     $expected = 1;
+                  $akhir = $this->objek->getCurrentRow();
+                  $result = $akhir - $awal;
+                  $expected = 1;
                   $this->assertEquals($expected,$result);
                   $output = $this->request('POST', 'controller/add_register');    
             
@@ -135,9 +135,9 @@ class Welcome_test extends TestCase
       public function test_update_anggota(){
                 $_SESSION['username'] = 'baba';
                 $_SESSION['status'] = 'login';
-                $_SESSION['role'] = 'mahasiswa'; 
+                $_SESSION['role'] = 'mahasiswa';
                 $output = $this->request('POST','controller/update_anggota',
-                ['judul'=>'aab', 'ketua'=>'ab', 'anggota1'=>'aaaaa', 'anggota2'=>'aaaaa', 'anggota3'=>'aaaaa', 'anggota4'=>'aaaaa']);
+                ['judul'=>'bbbbb', 'ketua'=>'ab', 'anggota1'=>'aaaaa', 'anggota2'=>'aaaaa', 'anggota3'=>'aaaaa', 'anggota4'=>'aaaaa']);
                 //$this->assertContains('Masuk', $output);
                 $where = 'baba';
             
