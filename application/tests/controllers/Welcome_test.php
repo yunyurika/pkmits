@@ -30,7 +30,7 @@ class Welcome_test extends TestCase
         public function test_add_register(){
                 $awal = $this->objek->getCurrentRow();  
                 $output = $this->request('POST','controller/add_register',
-                           ['nim'=>'5215118078', 
+                           ['nim'=>'5215008078', 
                             'nama'=>'ian', 
                             'email'=>'hanum@gmail.com', 
                             'password'=>'123']);
