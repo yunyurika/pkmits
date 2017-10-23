@@ -28,10 +28,18 @@ class Welcome_test extends TestCase
         }
         
         public function test_add_register(){
+                $awal = $this->objek->getCurrentRow();  
                 $output = $this->request('POST','controller/add_register',
-                ['nim'=>'11111', 'nama'=>'11111', 'email'=>'11111', 'password'=>'11111']);
-                //$this->assertContains('Masuk', $output);
-              //  $where = 'test';
+                           ['nim'=>'5215118078', 
+                            'nama'=>'ian', 
+                            'email'=>'hanum@gmail.com', 
+                            'password'=>'123']);
+                   $akhir = $this->objek->getCurrentRow();
+                    $result = $akhir - $awal;
+                     $expected = 1;
+                  $this->assertEquals($expected,$result);
+                  $output = $this->request('POST', 'controller/add_register');    
+            
         }
         public function test_add_register_kosong(){
                 $mula = $this->objek->getCurrentRow();
@@ -114,17 +122,6 @@ class Welcome_test extends TestCase
         $this->assertFalse( isset($_SESSION['username']) );
         }
     
-      /*   public function test_submit_masuk(){
-        $this->assertFalse( isset($_SESSION['username']) );
-        $this->request('POST', 'Welcome_admin/masuk',
-            [
-                'username' => 'kurakura',
-                'password' => 'penyu',
-            ]);
-        $this->assertRedirect('Admin');
-        $this->assertEquals('kurakura', $_SESSION['username']);
-        }
-        */
         public function test_submit_masuk_kosong(){
         $this->request('POST', 'controller/login',
             [
@@ -135,16 +132,23 @@ class Welcome_test extends TestCase
         $this->assertFalse( isset($_SESSION['username']) );
         }
         
-        public function test_update_anggota(){
+      public function test_update_anggota(){
                 $_SESSION['username'] = 'baba';
                 $_SESSION['status'] = 'login';
                 $_SESSION['role'] = 'mahasiswa'; 
                 $output = $this->request('POST','controller/update_anggota',
-                ['judulpkm'=>'aaaaa', 'anggota1'=>'aaaaa', 'anggota2'=>'aaaaa', 'anggota3'=>'aaaaa', 'anggota4'=>'aaaaa']);
+                ['judul'=>'aab', 'ketua'=>'ab', 'anggota1'=>'aaaaa', 'anggota2'=>'aaaaa', 'anggota3'=>'aaaaa', 'anggota4'=>'aaaaa']);
                 //$this->assertContains('Masuk', $output);
                 $where = 'baba';
             
-        }
+        } 
+        
+         public function test_updatepencet_nosession(){
+             $output = $this->request('POST','controller/update_anggota',
+                ['judul'=>'anu','ketua'=> 'dia', 'anggota1'=>'aaaaa', 'anggota2'=>'aaaaa', 'anggota3'=>'aaaaa', 'anggota4'=>'aaaaa']);
+               $this->assertRedirect(base_url());
+               $this->assertFalse(isset($_SESSION['username']));
+         }
         public function test_update_nosession() {
             $output = $this->request('GET', 'page/index');
             $this->assertContains('Masuk', $output);

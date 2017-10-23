@@ -50,7 +50,7 @@ class Mymodel extends CI_Model {
 		if($hasil->num_rows() > 0){
 			return $hasil->result();
 		} else {
-			return array();
+                    return array();
 		}
 	}
 

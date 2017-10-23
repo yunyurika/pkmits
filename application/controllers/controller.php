@@ -14,15 +14,6 @@
 			// }      
     }
 
-    public function index() {
-   //  	 if ($this->session->userdata('role') == 'mahasiswa' ){
-			// 	redirect('page/home');
-			// } else if ($this->session->userdata('role') == 'dosen'){
-			// 	redirect('page/urutan');
-			// } else {
-			// 	redirect(base_url());
-			//}
-    }
 
 
     public function add_register() {
@@ -35,25 +26,20 @@
 		$this->form_validation->set_rules('password', 'Password', 'required');
 
 		if($this->form_validation->run() != false){
+                    
 				$nama = $this->input->post('nama');
 				$nim  = $this->input->post('nim');
 				$email = $this->input->post('email');
 				$password = $this->input->post('password');
-			
-
-
 				$data = array('NIM' => $nim ,
 							  'Nama' => $nama,
 							  'Email' => $email,
 							  'Password' => md5($password) );
-
 				$sukses = $this->mymodel->register($data);
-
 				$data_session = array('username' => $username,
 									  'status' => 'login',
 									  'role' => 'mahasiswa');
 				$this->session->set_userdata($data_session);
-
 				redirect(base_url().'index.php/page/home');
 	
 		} else {
@@ -92,9 +78,7 @@
 			
 		} else  {
 			$this->session->set_flashdata('error', 'password/username yang anda masukkan salah');
-			redirect();
-		}
-       }
+			redirect();}}
 
 		// var_dump($isMahasiswa);
 
@@ -105,11 +89,11 @@
 		$this->session->unset_userdata($data_session);
 		$this->session->sess_destroy();
 
-		redirect(base_url());
-	}
+		redirect(base_url());}
 
 	public function update_anggota() {
-
+			 if($this->session->userdata('status') != "login" || $this->session->userdata('status') == "" || $this->session->userdata('status') == null ) {redirect(base_url());
+		 	}
 
 			$data = array(
     					  'JudulPKM' => $this->input->post('judul'),
@@ -128,8 +112,7 @@
 			$this->mymodel->update_data($where, $data, 'user');
 
 			$this->session->set_flashdata('success', 'berhasil mengupdate');
-			redirect(base_url().'index.php/page/home');
-        }
+			redirect(base_url().'index.php/page/home');}
 
 	/*public function update_pkm() {
 
